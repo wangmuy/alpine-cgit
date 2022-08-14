@@ -7,7 +7,7 @@ ARG PGID=1001
 #
 RUN set -xe \
     && apk add --no-cache --purge -uU \
-	    ca-certificates curl cgit lighttpd git openssh-server \
+	    ca-certificates curl cgit lighttpd git openssh-client openssh-server \
     && echo 'include "cgit.conf"' >> /etc/lighttpd/lighttpd.conf \
 #    && addgroup -g ${PGID} -S git \
 #    && adduser -u ${PUID} -G git -h /home/git -D git -s /usr/bin/git-shell git users  \
