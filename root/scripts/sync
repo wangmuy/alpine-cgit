@@ -26,16 +26,15 @@ else
 
     # sync mirrors
     find "$REPODIR" -maxdepth 3 -type d 2> /dev/null |\
-	grep -e '\.git\/' |\
-	sed 's_\/[^\/]*$__' |\
-	uniq | sort > /tmp/gitlist;
+	grep -e '\.git$' |\
+	sort | uniq > /tmp/gitlist;
 
     echo "$(date)" > $RUNFILE;
 
     while read line;
     do
         cd $(readlink -f $line) ;
-        echo "===";
+        echo ">>>===";
 
         # echo "[$(date)] Repo Location: ${PWD##*/}";
         echo "[$(date)] Repo Location: ${PWD##$REPODIR/}";
@@ -50,7 +49,7 @@ else
 	fi;
 
         echo "[$(date)] Done";
-        echo "===";
+        echo -e "===\n";
     done < /tmp/gitlist;
 
     rm -f $RUNFILE;
